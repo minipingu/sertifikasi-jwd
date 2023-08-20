@@ -2,21 +2,22 @@
 
 
 $pages = [
-  "beranda/admin.php",
+  "beasiswa/mahasiswa",
+  "dashboard",
   "form-edit",
   "form-tambah",
   "logout",
-
-
 ];
 
 
+
 if (isset($_GET['page'])) {
-  foreach ($pages as $p) {
-    if ($_GET['page'] == $p) {
-      include "$p.php";
+  foreach ($pages as $page) {
+    //mengambil parameter link dari menu sidebar untuk menampilkan halaman
+    if ($_GET['page'] == $page) {
+      include "$page.php";
     }
   }
 } else {
-  include 'data.php';
+  include 'dashboard.php';
 }

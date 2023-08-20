@@ -2,54 +2,42 @@
 session_start();
 ob_start();
 
-if (empty($_SESSION['user'])) {
+if (empty($_SESSION['nama'])) {
     include 'login/not-login.php';
 } else {
     define('INDEX', true);
 ?>
-    <?php include 'index_part/head.php' ?>
+<!-- Head -->
+<?php 
+require_once './index_part/head.php';
+?>
 
-    <body class="hold-transition   sidebar-mini ">
-        <div class="wrapper">
+<body class="hold-transition sidebar-mini layout-fixed">
+  <div class="wrapper">
+    <!-- Preloader -->
+    <?php 
+    require_once './index_part/prealoader.php'
+    ?>
 
-            <!-- Preloader -->
-            <?php include 'index_part/prealoader.php' ?>
+    <!-- Navbar -->
+    <?php
+    require_once './index_part/navbar.php'
+    ?>
 
-            <!-- Navbar -->
-            <?php //include 'navbar.php' 
-            ?>
-            <!-- /.navbar -->
-            <?php include 'index_part/sidebar.php' ?>
-            <!-- Main Sidebar Container -->
-            <!-- Content Wrapper. Contains page content -->
-            <div class="content-wrapper">
-                <!-- Content Header (Page header) -->
-                <?php // include 'content-header.php' 
-                ?>
-                <!-- Main content -->
-                <?php // include 'main-content.php' 
-                ?>
-                <?php include 'router.php' ?>
+    <!-- Main Sidebar Container -->
+    <?php 
+    require_once './index_part/sidebar.php'
+    ?>
 
-                <!-- /.content -->
-            </div>
-            <!-- /.content-wrapper -->
-            <!-- Control Sidebar -->
-            <aside class="control-sidebar control-sidebar-dark">
-                <!-- Control sidebar content goes here -->
+    <!-- Content Wrapper. Contains page content -->
+    <?php 
+    require_once './router.php'
+    ?>
+    <!-- /.content-wrapper -->
 
-            </aside>
-            <!-- /.control-sidebar -->
-
-            <!-- Main Footer -->
-            <?php include 'index_part/footer.php' ?>
-        </div>
-
-
-    </body>
-
-    </html>
-<?php
+    <!-- footer -->
+    <?php
+    require_once './index_part/footer.php';
 }
 
 if (isset($_GET['error'])) {

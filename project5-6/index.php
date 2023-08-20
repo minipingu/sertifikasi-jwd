@@ -28,12 +28,12 @@ if (isset($_SESSION['user'])) {
 
   <body class="hold-transition login-page">
     <img src="https://kampusmerdeka.kemdikbud.go.id/web/assets/img/logo-kampus-merdeka.png" alt="" width="300">
-    <div class="login-box mt-5">
+    <div class="login-box mt-4" style="width: 500px;">
       <!-- /.login-logo -->
 
       <div class="card card-primary accent-blue">
         <div class="card-header text-center">
-          <h1 class="mt-2"><b>Kampusku</b>aja.com</h1>
+          <h1 class="mt-2">Kampuskuaja.ac.id</h1>
         </div>
         <div class="card-body">
           <p class="login-box-msg">Silahkan Login</p>

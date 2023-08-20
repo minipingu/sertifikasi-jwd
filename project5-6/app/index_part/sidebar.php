@@ -3,7 +3,7 @@
   <a href="index.php" class="brand-link">
     <img src="https://i.pinimg.com/originals/6e/85/14/6e85140a1ac9412a19955b2e43473cf4.jpg" alt="AdminLTE Logo"
       class="brand-image img-circle elevation-3" style="opacity: .8">
-    <span class="brand-text font-weight-light"><strong>KAMPUSKUaja.com</strong></span>
+    <span class="brand-text font-weight-light"><strong>KAMPUSKUaja.ac.id</strong></span>
   </a>
 
   <!-- Sidebar -->
@@ -11,11 +11,11 @@
     <!-- Sidebar user panel (optional) -->
     <div class="user-panel mt-3 pb-3 mb-3 d-flex">
       <div class="image">
-        <img src="https://dev.med.maranatha.edu/wp-content/uploads/2023/03/Dosen-Cindra-Paskaria-02.png"
-          class="img-circle elevation-2" alt="User Image">
+        <img src=<?= $_SESSION['foto'] ?> class="img-circle elevation-2" alt="User Image" style="width:4rem;">
       </div>
       <div class="info">
-        <a href="index.php" class="d-block"><?= $_SESSION['user'] ?></a>
+        <a href="index.php" class="d-block"><?= $_SESSION['nama'] ?></a>
+        <div class="d-block text-primary"><?= $_SESSION['role'] ?></div>
       </div>
     </div>
 
@@ -38,12 +38,19 @@
 
         <?php
         // untuk menambahkan class active di menu jika terpilih
-        $isset = isset($_GET['page'])
+        function active ($page){
+          $isset = isset($_GET['page']);
+          if ($isset) {
+            if ($_GET['page']==$page){
+              return "active";
+            }
+          }
+        }
         ?>
 
         <li class="nav-item mt-2">
           <a href="index.php" class="nav-link 
-          <?php echo ($isset ? "" : "active "); ?>">
+          <?php echo (isset($_GET['page']) ? "" : "active "); ?>">
             <i class="nav-icon fas fa-home"></i>
             <p>
               Beranda
@@ -52,8 +59,8 @@
         </li>
 
         <li class="nav-item mt-2 ">
-          <a href="?page=pilihan-beasiswa" class="nav-link 
-          <?php echo ($isset ? "active" : ""); ?>
+          <a href="?page=beasiswa/mahasiswa" class="nav-link 
+          <?= active("beasiswa/mahasiswa") ?>
           ">
             <i class="nav-icon fas fa-graduation-cap"></i>
             <p>
@@ -64,9 +71,9 @@
 
         <li class="nav-item mt-2 ">
           <a href="?page=pilihan-beasiswa" class="nav-link 
-          <?php echo ($isset ? "active" : ""); ?>
+          <?php  ?>
           ">
-            <i class="nav-icon fas fa-users"></i>
+            <i class="nav-icon fas fa-user-graduate"></i>
             <p>
               Daftar
             </p>
@@ -75,7 +82,7 @@
 
         <li class="nav-item mt-2 ">
           <a href="?page=pilihan-beasiswa" class="nav-link 
-          <?php echo ($isset ? "active" : ""); ?>
+          <?php  ?>
           ">
             <i class="nav-icon fas fa-clipboard-check"></i>
             <p>
@@ -86,7 +93,7 @@
 
         <li class="nav-item mt-2 ">
           <a href="?page=logout" class="nav-link
-          <?php echo ($isset ? "active" : ""); ?>
+          <?php  ?>
           ">
             <i class="nav-icon fas fa-power-off"></i>
             <p>
