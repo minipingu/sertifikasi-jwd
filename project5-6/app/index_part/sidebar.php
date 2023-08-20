@@ -50,7 +50,8 @@
 
         <li class="nav-item mt-2">
           <a href="index.php" class="nav-link 
-          <?php echo (isset($_GET['page']) ? "" : "active "); ?>">
+            <?php echo (isset($_GET['page']) ? "" : "active "); ?>
+          ">
             <i class="nav-icon fas fa-home"></i>
             <p>
               Beranda
@@ -60,7 +61,7 @@
 
         <li class="nav-item mt-2 ">
           <a href="?page=beasiswa/mahasiswa" class="nav-link 
-          <?= active("beasiswa/mahasiswa") ?>
+            <?= active("beasiswa/mahasiswa") ?>
           ">
             <i class="nav-icon fas fa-graduation-cap"></i>
             <p>
@@ -70,8 +71,8 @@
         </li>
 
         <li class="nav-item mt-2 ">
-          <a href="?page=pilihan-beasiswa" class="nav-link 
-          <?php  ?>
+          <a href="?page=daftar/mahasiswa" class="nav-link 
+            <?= active("daftar/mahasiswa") ?>
           ">
             <i class="nav-icon fas fa-user-graduate"></i>
             <p>
@@ -81,8 +82,8 @@
         </li>
 
         <li class="nav-item mt-2 ">
-          <a href="?page=pilihan-beasiswa" class="nav-link 
-          <?php  ?>
+          <a href="?page=hasil/mahasiswa" class="nav-link 
+          <?= active("hasil/mahasiswa") ?>
           ">
             <i class="nav-icon fas fa-clipboard-check"></i>
             <p>

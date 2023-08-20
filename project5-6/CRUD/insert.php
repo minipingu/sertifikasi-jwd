@@ -2,35 +2,62 @@
 ob_start();
 require_once 'config.php';
 
-$foto_name = $_FILES['file']['name'];
-$foto_tmp = $_FILES['file']['tmp_name'];
-$foto_type = $_FILES['file']['type'];
-$foto_error = $_FILES['file']['error'];
-$foto_size = $_FILES['file']['size'];
-$foto_path = "../images/foto/" . $foto_name;
+if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
-if ($foto_error > 0) {
-  header('location:../app/form-tambah.php?error=1');
-} else if ($foto_type != "image/jpeg" && $foto_type != "image/png") {
-  header('location:../app/form-tambah.php?error=2');
-} else {
-  move_uploaded_file($foto_tmp, $foto_path);
+    $nama = $_POST['nama'];
+    $email = $_POST['email'];
+    $handphone = $_POST['handphone'];
+    $semester = $_POST['semester'];
+    $ipk = $_POST['ipk'];
+    $beasiswa = $_POST['beasiswa'];
+    $status = 'menunggu review';
+    
+    //tanggal day,dd/mm/yyyy
+    date_default_timezone_set('Asia/Jakarta'); // Set the time zone to Jakarta
+    $currentDate = new DateTime();
+    $dayNames = [
+        'Sunday'    => 'Minggu',
+        'Monday'    => 'Senin',
+        'Tuesday'   => 'Selasa',
+        'Wednesday' => 'Rabu',
+        'Thursday'  => 'Kamis',
+        'Friday'    => 'Jumat',
+        'Saturday'  => 'Sabtu'
+    ];
 
-  $nama = strip_tags($_POST['nama']);
-  $alamat = strip_tags($_POST['alamat']);
-  $kelamin = strip_tags($_POST['kelamin']);
-  $agama = strip_tags($_POST['agama']);
-  $sekolah = strip_tags($_POST['sekolah']);
+    $dayName = $dayNames[$currentDate->format('l')];
+    $formattedDate = $dayName . ', ' . $currentDate->format('d/m/Y');
+    //
+    
+    $targetDirectory = "../app/uploads/"; 
+    $uploadedFile = $targetDirectory . basename($_FILES["file"]["name"]);
+    
+    if (move_uploaded_file($_FILES["file"]["tmp_name"], $uploadedFile)) {
+        $query = "INSERT INTO daftar (nama, email, handphone, semester, ipk, beasiswa, berkas,status,tanggal) 
+                  VALUES (:nama, :email, :handphone, :semester, :ipk, :beasiswa, :berkas, :status,:tanggal)";
+        $stmt = $pdo->prepare($query);
+        $stmt->bindParam(':nama', $nama);
+        $stmt->bindParam(':email', $email);
+        $stmt->bindParam(':handphone', $handphone);
+        $stmt->bindParam(':semester', $semester);
+        $stmt->bindParam(':ipk', $ipk);
+        $stmt->bindParam(':beasiswa', $beasiswa);
+        $stmt->bindParam(':berkas', $_FILES["file"]["name"]); 
+        $stmt->bindParam(':status', $status);
+        $stmt->bindParam(':tanggal', $formattedDate);
 
-  //untuk mengamankan dari SQL injection kita coba gunakan perintah seperti ini
-  $query = $pdo->prepare("INSERT INTO daftar (foto,nama,alamat,kelamin,agama,sekolah) VALUES (?,?,?,?,?,?)");
-  $query->bindParam(1, $foto_name);
-  $query->bindParam(2, $nama);
-  $query->bindParam(3, $alamat);
-  $query->bindParam(4, $kelamin);
-  $query->bindParam(5, $agama);
-  $query->bindParam(6, $sekolah);
-  $query->execute();
 
-  header("location:../app/index.php?error=0");
+        if ($stmt->execute()) {
+            // Success
+            header("Location: ../app?page=hasil/mahasiswa"); 
+            exit();
+        } else {
+            // Error
+            echo "Error: " . $stmt->errorInfo()[2];
+        }
+    } else {
+        // File upload failed
+        echo "File upload failed.";
+    }
 }
+?>

@@ -1,10 +1,11 @@
 <?php 
+
   require_once '../CRUD/config.php';
   $query = "SELECT * FROM beasiswa";
-  $select = $pdo->query($query); 
-  
+  $select = $pdo->query($query);
 
-?>
+
+  ?>
 
 <div class="content-wrapper">
   <!-- Content Header (Page header) -->
@@ -28,10 +29,10 @@
   <div class="content">
     <div class="container-fluid">
       <div class="row m-3">
-        <!-- col-md-6 -->
-        <?php 
-          $nomor = 1;
-        foreach ($select as $data){
+        <!-- card -->
+        <?php
+        $nomor = 1;
+        foreach ($select as $data) {
           $id = $data['id'];
           $nama = $data['nama'];
           $keterangan = $data['keterangan'];
@@ -52,7 +53,7 @@
           $nomor++;
         }
         ?>
-        <!-- /.col-md-6 -->
+        <!-- /.card -->
 
       </div>
       <!-- /.row -->

@@ -2,8 +2,10 @@
 
 
 $pages = [
-  "beasiswa/mahasiswa",
   "dashboard",
+  "beasiswa/mahasiswa",
+  "daftar/mahasiswa",
+  "hasil/mahasiswa",
   "form-edit",
   "form-tambah",
   "logout",
