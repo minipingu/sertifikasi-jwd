@@ -4,7 +4,7 @@
     <div class="container-fluid">
       <div class="row mb-2">
         <div class="col-sm-6">
-          <h1 class="m-0">Selamat Datang ! </h1>
+          <h1 class="m-0">Selamat Datang <strong><?=$_SESSION['nama']?></strong> ! </h1>
           <p><?=$_SESSION['email']?></p>
         </div><!-- /.col -->
         <div class="col-sm-6">

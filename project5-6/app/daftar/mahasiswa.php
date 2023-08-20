@@ -15,6 +15,13 @@ $semester = [
 $query = "SELECT * FROM beasiswa";
 $beasiswa = $pdo->query($query);
 
+//fungsi apabila ipk dibawah 3
+function ipkUnderThree(){
+  if (intval($_SESSION['ipk'])<3){
+    return 'disabled';
+  }
+}
+
 ?>
 <div class="content-wrapper">
   <!-- Content Header (Page header) -->
@@ -99,7 +106,8 @@ $beasiswa = $pdo->query($query);
                 <div class="form-group row">
                   <label for="inputPassword3" class="col-sm-4 col-form-label">Pilihan beasiswa</label>
                   <div class="col-sm-8">
-                    <select required class="custom-select rounded-0" id="exampleSelectRounded0" name="beasiswa">
+                    <select <?= ipkUnderThree()?> required class="custom-select rounded-0" id="exampleSelectRounded0"
+                      name="beasiswa">
                       <option hidden disabled selected value="">-- pilih beasiswa --</option>
                       <?php 
                         foreach ($beasiswa as $data){
@@ -114,18 +122,16 @@ $beasiswa = $pdo->query($query);
                 <div class="form-group row mb-1">
                   <label for="inputPassword3" class="col-sm-4 col-form-label">Upload Berkas Syarat</label>
                   <div class="col-sm-8">
-                    <input required type="file" class="custom-file-input" id="customFile" name="file">
+                    <input <?= ipkUnderThree()?> required type="file" class="custom-file-input" id="customFile"
+                      name="file">
                     <label class="custom-file-label mr-2 ml-2" for="customFile">Format File (.jpeg/.png/.pdf)</label>
                   </div>
                 </div>
 
-
-
-
               </div>
               <!-- /.card-body -->
               <div class="card-footer">
-                <button type="submit" class="btn btn-primary">Kirim</button>
+                <button <?= ipkUnderThree()?> type="submit" class="btn btn-primary">Simpan</button>
                 <button type="reset" class="btn btn-default float-right">Reset</button>
               </div>
               <!-- /.card-footer -->

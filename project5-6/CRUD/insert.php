@@ -10,7 +10,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $semester = $_POST['semester'];
     $ipk = $_POST['ipk'];
     $beasiswa = $_POST['beasiswa'];
-    $status = 'menunggu review';
+    $status = 'belum di verifikasi';
     
     //tanggal day,dd/mm/yyyy
     date_default_timezone_set('Asia/Jakarta'); // Set the time zone to Jakarta
