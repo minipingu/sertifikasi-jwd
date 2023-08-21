@@ -1,4 +1,4 @@
-## Aplikasi beasiswa kampusKuAja.ac.id
+## Aplikasi beasiswa kampusKuAja.ac.id by Dede Nurhidayat untuk sertifikasi JWD tanggal 21/8/2023
 
 Menggunakan beberapa teknologi pemrograman seperti php, javascript, css, dan html.
 
