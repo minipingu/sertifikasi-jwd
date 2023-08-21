@@ -60,8 +60,8 @@
         </li>
 
         <li class="nav-item mt-2 ">
-          <a href="?page=beasiswa/mahasiswa" class="nav-link 
-            <?= active("beasiswa/mahasiswa") ?>
+          <a href="?page=beasiswa/beasiswa" class="nav-link 
+            <?= active("beasiswa/beasiswa") ?>
           ">
             <i class="nav-icon fas fa-graduation-cap"></i>
             <p>
@@ -69,28 +69,46 @@
             </p>
           </a>
         </li>
-
-        <li class="nav-item mt-2 ">
-          <a href="?page=daftar/mahasiswa" class="nav-link 
-            <?= active("daftar/mahasiswa") ?>
-          ">
-            <i class="nav-icon fas fa-user-graduate"></i>
-            <p>
-              Daftar
-            </p>
+        <?php 
+        if($_SESSION['role']=='Mahasiswa'){ 
+          echo '<li class="nav-item mt-2 ">
+          <a href="?page=daftar/mahasiswa" class="nav-link';
+          echo active("daftar/mahasiswa");
+          echo '">
+          <i class="nav-icon fas fa-user-graduate"></i>
+          <p>
+            Daftar
+          </p>
           </a>
-        </li>
-
-        <li class="nav-item mt-2 ">
-          <a href="?page=hasil/mahasiswa" class="nav-link 
-          <?= active("hasil/mahasiswa") ?>
-          ">
+          </li>';
+          echo '<li class="nav-item mt-2 ">
+          <a href="?page=hasil/mahasiswa" class="nav-link ';
+          echo active("hasil/mahasiswa");
+          echo'">
             <i class="nav-icon fas fa-clipboard-check"></i>
             <p>
               Hasil
             </p>
           </a>
-        </li>
+          </li>';
+        
+        } elseif($_SESSION['role']=='Admin') {
+           echo '<li class="nav-item mt-2 ">
+          <a href="?page=hasil/admin" class="nav-link ';
+          echo active("hasil/admin");
+          echo'">
+            <i class="nav-icon fas fa-clipboard-list"></i>
+            <p>
+              List Pengajuan
+            </p>
+          </a>
+          </li>';
+        }
+        ?>
+
+
+
+
 
         <li class="nav-item mt-2 ">
           <a href="?page=logout" class="nav-link

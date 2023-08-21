@@ -1,6 +1,5 @@
 <?php 
 
-  require_once '../CRUD/config.php';
   $query = "SELECT * FROM beasiswa";
   $select = $pdo->query($query);
 
@@ -29,8 +28,14 @@
   <div class="content">
     <div class="container-fluid">
       <div class="row m-3">
+
         <!-- card -->
         <?php
+        if ( $_SESSION['role']=='Admin'){
+                echo "
+                  <a href='?page=beasiswa/form-tambah' class='btn btn-primary mb-4'><i class='fas fa-plus-circle'></i> Tambah Beasiswa</a>
+                ";
+          }
         $nomor = 1;
         foreach ($select as $data) {
           $id = $data['id'];
@@ -45,16 +50,23 @@
               </div>
               <div class='card-body'>
                 <p class='card-text'>$keterangan</p>
-                <a target='_blank' href='$link' class='btn btn-primary'>Website</a>
-              </div>
-            </div>
-         
-          ";
+                <a target='_blank' href='$link' class='btn btn-success'>Website</a>
+              </div>";
+          
+              
+          if ( $_SESSION['role']=='Admin'){
+                echo "
+                <div class='card-footer'>
+                  <a href='?page=beasiswa/form-edit&id=$id' class='btn btn-warning m-2'><i class='fas fa-edit'></i> Edit</a>
+                  <a href='../CRUD/beasiswa-delete.php?id=$id' class='btn btn-danger m-2' onclick='return confirm(\"Anda yakin ingin menghapus?\");'><i class='fas fa-trash-alt'></i> Delete</a>
+                </div>
+                ";
+          }
+          echo "</div>";
           $nomor++;
         }
         ?>
         <!-- /.card -->
-
       </div>
       <!-- /.row -->
     </div><!-- /.container-fluid -->

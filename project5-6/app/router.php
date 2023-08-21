@@ -3,11 +3,12 @@
 
 $pages = [
   "dashboard",
-  "beasiswa/mahasiswa",
+  "beasiswa/beasiswa",
+  "beasiswa/form-tambah",
+  "beasiswa/form-edit",
   "daftar/mahasiswa",
   "hasil/mahasiswa",
-  "form-edit",
-  "form-tambah",
+  "hasil/admin",
   "logout",
 ];
 

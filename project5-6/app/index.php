@@ -2,6 +2,9 @@
 session_start();
 ob_start();
 
+require_once '../CRUD/config.php';
+
+
 if (empty($_SESSION['nama'])) {
     include 'login/not-login.php';
 } else {

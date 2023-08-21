@@ -1,3 +1,23 @@
+<?php 
+
+//mengambil data pendaftaran
+$query_daftar = "SELECT * FROM daftar";
+$select_daftar = $pdo->query($query_daftar);
+//jumlah pendaftaran
+$rowCountDaftar = $select_daftar->rowCount();
+
+//mengambil data mahasiswa
+$query_mahasiswa = "SELECT * FROM mahasiswa";
+$select_mahasiswa = $pdo->query($query_mahasiswa);
+//jumlah pendaftaran
+$rowCountMahasiswa = $select_mahasiswa->rowCount();
+
+//mengambil data beasiswa
+$query_beasiswa = "SELECT * FROM beasiswa";
+$select_beasiswa = $pdo->query($query_beasiswa);
+//jumlah beasiswa
+$rowCountBeasiswa = $select_beasiswa->rowCount();
+?>
 <div class="content-wrapper">
   <!-- Content Header (Page header) -->
   <div class="content-header">
@@ -23,16 +43,14 @@
       <div class="row">
         <div class="col-lg-3 col-6">
           <!-- small box -->
-          <div class="small-box bg-info">
+          <div class="small-box bg-warning">
             <div class="inner">
-              <h3>150</h3>
-
-              <p>New Orders</p>
+              <h3><?=$rowCountDaftar?></h3>
+              <p>Pengajuan Beasiswa</p>
             </div>
             <div class="icon">
-              <i class="ion ion-bag"></i>
+              <i class="ion ion-ios-list"></i>
             </div>
-            <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
           </div>
         </div>
         <!-- ./col -->
@@ -40,47 +58,27 @@
           <!-- small box -->
           <div class="small-box bg-success">
             <div class="inner">
-              <h3>53<sup style="font-size: 20px">%</sup></h3>
-
-              <p>Bounce Rate</p>
+              <h3><?=$rowCountMahasiswa?></h3>
+              <p>Total Mahasiswa</p>
             </div>
             <div class="icon">
-              <i class="ion ion-stats-bars"></i>
+              <i class="ion ion-ios-people"></i>
             </div>
-            <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
           </div>
         </div>
-        <!-- ./col -->
         <div class="col-lg-3 col-6">
           <!-- small box -->
-          <div class="small-box bg-warning">
+          <div class="small-box bg-info">
             <div class="inner">
-              <h3>44</h3>
-
-              <p>User Registrations</p>
+              <h3><?=$rowCountBeasiswa?></h3>
+              <p>Macam Beasiswa</p>
             </div>
             <div class="icon">
-              <i class="ion ion-person-add"></i>
+              <i class="ion ion-university"></i>
             </div>
-            <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
           </div>
         </div>
-        <!-- ./col -->
-        <div class="col-lg-3 col-6">
-          <!-- small box -->
-          <div class="small-box bg-danger">
-            <div class="inner">
-              <h3>65</h3>
 
-              <p>Unique Visitors</p>
-            </div>
-            <div class="icon">
-              <i class="ion ion-pie-graph"></i>
-            </div>
-            <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
-          </div>
-        </div>
-        <!-- ./col -->
       </div>
       <!-- /.row -->
 

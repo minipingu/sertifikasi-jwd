@@ -1,5 +1,4 @@
 <?php
-require_once '../CRUD/config.php';
 
 $semester = [
   1,
@@ -16,9 +15,11 @@ $query = "SELECT * FROM beasiswa";
 $beasiswa = $pdo->query($query);
 
 //fungsi apabila ipk dibawah 3
-function ipkUnderThree(){
+function ipkUnderThree($underThree, $moreThanThree=""){
   if (intval($_SESSION['ipk'])<3){
-    return 'disabled';
+    return $underThree;
+  } else {
+    return $moreThanThree;
   }
 }
 
@@ -47,9 +48,12 @@ function ipkUnderThree(){
       <div class="row m-3">
         <div class="col-lg-8">
           <!-- card  -->
-          <div class="card card-primary">
+          <div class="card <?= ipkUnderThree('card-danger','card-primary')?>">
             <div class="card-header">
-              <h3 class="card-title">Isi form dibawah ini untuk mendaftar beasiswa</h3>
+              <h3 class="card-title ">
+
+                <?= ipkUnderThree('Anda tidak bisa mendaftar karena IPK Anda kurang dari 3.0','Silahkan isi form di bawah ini')?>
+              </h3>
             </div>
             <!-- /.card-header -->
             <!-- form start -->
@@ -57,33 +61,42 @@ function ipkUnderThree(){
               <div class="card-body">
 
                 <div class="form-group row">
-                  <label for="inputPassword3" class="col-sm-4 col-form-label">Nama</label>
+                  <label for="nama" class="col-sm-4 col-form-label">Nama</label>
                   <div class="col-sm-8">
-                    <input required type="text" class="form-control" id="inputPassword3" placeholder="Nama" name="nama"
+                    <input required type="text" class="form-control" id="nama" placeholder="Nama" name="nama"
                       value='<?=$_SESSION['nama']?>'>
                   </div>
                 </div>
                 <hr>
+
                 <div class="form-group row">
-                  <label for="inputEmail3" class="col-sm-4 col-form-label">Email</label>
+                  <label for="nim" class="col-sm-4 col-form-label">NIM</label>
                   <div class="col-sm-8">
-                    <input required type="email" class="form-control" id="inputEmail3" placeholder="Email" name="email"
+                    <input required type="text" class="form-control" id="nama" placeholder="NIM" name="nim"
+                      value='<?=$_SESSION['nim']?>'>
+                  </div>
+                </div>
+                <hr>
+                <div class="form-group row">
+                  <label for="email" class="col-sm-4 col-form-label">Email</label>
+                  <div class="col-sm-8">
+                    <input required type="email" class="form-control" id="email" placeholder="Email" name="email"
                       value='<?=$_SESSION['email']?>'>
                   </div>
                 </div>
                 <hr>
                 <div class="form-group row">
-                  <label for="inputPassword3" class="col-sm-4 col-form-label">No. HP</label>
+                  <label for="handphone" class="col-sm-4 col-form-label">No. HP</label>
                   <div class="col-sm-8">
-                    <input required type="number" class="form-control" id="inputPassword3" placeholder="Nomor handphone"
+                    <input required type="number" class="form-control" id="handphone" placeholder="Nomor handphone"
                       name="handphone">
                   </div>
                 </div>
                 <hr>
                 <div class="form-group row">
-                  <label for="inputPassword3" class="col-sm-4 col-form-label">Semester saat ini</label>
+                  <label for="semester" class="col-sm-4 col-form-label">Semester saat ini</label>
                   <div class="col-sm-8">
-                    <select required class="custom-select rounded-0" id="exampleSelectRounded0" name="semester">
+                    <select required class="custom-select rounded-0" id="semester" name="semester">
                       <?php 
                         foreach ($semester as $angka){
                           echo "<option value='$angka'";
@@ -96,17 +109,17 @@ function ipkUnderThree(){
                 </div>
                 <hr>
                 <div class="form-group row">
-                  <label for="inputPassword3" class="col-sm-4 col-form-label">IPK terakhir</label>
+                  <label for="ipk" class="col-sm-4 col-form-label">IPK terakhir</label>
                   <div class="col-sm-8">
-                    <input required type="number" class="form-control" id="inputPassword3" placeholder="IPK" name="ipk"
+                    <input required type="number" class="form-control" id="ipk" placeholder="IPK" name="ipk"
                       value='<?=$_SESSION['ipk']?>'>
                   </div>
                 </div>
                 <hr>
                 <div class="form-group row">
-                  <label for="inputPassword3" class="col-sm-4 col-form-label">Pilihan beasiswa</label>
+                  <label for="beasiswa" class="col-sm-4 col-form-label">Pilihan beasiswa</label>
                   <div class="col-sm-8">
-                    <select <?= ipkUnderThree()?> required class="custom-select rounded-0" id="exampleSelectRounded0"
+                    <select <?= ipkUnderThree('disabled')?> required class="custom-select rounded-0" id="beasiswa"
                       name="beasiswa">
                       <option hidden disabled selected value="">-- pilih beasiswa --</option>
                       <?php 
@@ -120,18 +133,18 @@ function ipkUnderThree(){
                 <hr>
 
                 <div class="form-group row mb-1">
-                  <label for="inputPassword3" class="col-sm-4 col-form-label">Upload Berkas Syarat</label>
+                  <label for="berkas" class="col-sm-4 col-form-label">Upload Berkas Syarat</label>
                   <div class="col-sm-8">
-                    <input <?= ipkUnderThree()?> required type="file" class="custom-file-input" id="customFile"
+                    <input <?= ipkUnderThree('disabled')?> required type="file" class="custom-file-input" id="berkas"
                       name="file">
-                    <label class="custom-file-label mr-2 ml-2" for="customFile">Format File (.jpeg/.png/.pdf)</label>
+                    <label class="custom-file-label mr-2 ml-2" for="berkas">Format File (.jpeg/.png/.pdf)</label>
                   </div>
                 </div>
 
               </div>
               <!-- /.card-body -->
               <div class="card-footer">
-                <button <?= ipkUnderThree()?> type="submit" class="btn btn-primary">Simpan</button>
+                <button <?= ipkUnderThree('disabled')?> type="submit" class="btn btn-primary">Simpan</button>
                 <button type="reset" class="btn btn-default float-right">Reset</button>
               </div>
               <!-- /.card-footer -->

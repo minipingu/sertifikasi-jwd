@@ -5,6 +5,7 @@ require_once 'config.php';
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
     $nama = $_POST['nama'];
+    $nim = $_POST['nim'];
     $email = $_POST['email'];
     $handphone = $_POST['handphone'];
     $semester = $_POST['semester'];
@@ -33,10 +34,11 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $uploadedFile = $targetDirectory . basename($_FILES["file"]["name"]);
     
     if (move_uploaded_file($_FILES["file"]["tmp_name"], $uploadedFile)) {
-        $query = "INSERT INTO daftar (nama, email, handphone, semester, ipk, beasiswa, berkas,status,tanggal) 
-                  VALUES (:nama, :email, :handphone, :semester, :ipk, :beasiswa, :berkas, :status,:tanggal)";
+        $query = "INSERT INTO daftar (nama,nim, email, handphone, semester, ipk, beasiswa, berkas,status,tanggal) 
+                  VALUES (:nama,:nim, :email, :handphone, :semester, :ipk, :beasiswa, :berkas, :status,:tanggal)";
         $stmt = $pdo->prepare($query);
         $stmt->bindParam(':nama', $nama);
+        $stmt->bindParam(':nim', $nim);
         $stmt->bindParam(':email', $email);
         $stmt->bindParam(':handphone', $handphone);
         $stmt->bindParam(':semester', $semester);

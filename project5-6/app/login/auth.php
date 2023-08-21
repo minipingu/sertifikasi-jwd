@@ -7,25 +7,24 @@ $email = $_POST['email'];
 $password = md5($_POST['password']);
 
 //mengambil data admin
-$query = "SELECT * FROM admin WHERE email='$email' AND password='$password'";
-$select = $pdo->query($query);
-$rowAdmin = $select->fetch(PDO::FETCH_ASSOC);
+$query_admin = "SELECT * FROM admin WHERE email='$email' AND password='$password'";
+$select_admin = $pdo->query($query_admin);
+$rowAdmin = $select_admin->fetch(PDO::FETCH_ASSOC);
 //apakah ada data login adminnya
-$rowCountAdmin = $select->rowCount();
+$rowCountAdmin = $select_admin->rowCount();
 
 //mengambil data mahasiswa
-$query = "SELECT * FROM mahasiswa WHERE email='$email' AND password='$password'";
-$select = $pdo->query($query);
-$rowMahasiswa = $select->fetch(PDO::FETCH_ASSOC);
+$query_mahasiswa = "SELECT * FROM mahasiswa WHERE email='$email' AND password='$password'";
+$select_mahasiswa = $pdo->query($query_mahasiswa);
+$rowMahasiswa = $select_mahasiswa->fetch(PDO::FETCH_ASSOC);
 //apakah ada data login mahasiswanya
-$rowCountMahasiswa = $select->rowCount();
+$rowCountMahasiswa = $select_mahasiswa->rowCount();
 
 if ($rowCountAdmin > 0){
   header('location:../index.php');
   $_SESSION['nama'] = $rowAdmin['nama'];
   $_SESSION['foto'] = $rowAdmin['foto'];
   $_SESSION['role'] = $rowAdmin['role'];
-
 
 } else if ($rowCountMahasiswa > 0) {
   header('location:../index.php');
