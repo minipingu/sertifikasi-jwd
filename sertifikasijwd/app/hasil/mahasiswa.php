@@ -1,6 +1,6 @@
 <?php 
 $nim = $_SESSION['nim'];
-$query = "SELECT * FROM daftar ORDER BY id DESC WHERE nim = :nim ";
+$query = "SELECT * FROM daftar WHERE nim = :nim ORDER BY id DESC";
 $stmt = $pdo->prepare($query);
 $stmt->bindParam(':nim', $nim);
 $stmt->execute();
