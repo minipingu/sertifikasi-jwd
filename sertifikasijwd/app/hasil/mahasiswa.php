@@ -1,6 +1,8 @@
 <?php 
-$query = "SELECT * FROM daftar";
+$nim = $_SESSION['nim'];
+$query = "SELECT * FROM daftar ORDER BY id DESC WHERE nim = :nim ";
 $stmt = $pdo->prepare($query);
+$stmt->bindParam(':nim', $nim);
 $stmt->execute();
 $tabelhasil = $stmt->fetchAll(PDO::FETCH_ASSOC);
 $rowTabelHasil = $stmt->rowCount();
@@ -13,12 +15,12 @@ if ($rowTabelHasil>0){
     <div class="container-fluid">
       <div class="row mb-2">
         <div class="col-sm-6">
-          <h1>List Pengajuan Beasiswa</h1>
+          <h1>Hasil Pengajuan Beasiswa</h1>
         </div>
         <div class="col-sm-6">
           <ol class="breadcrumb float-sm-right">
             <li class="breadcrumb-item"><a href="./">Home</a></li>
-            <li class="breadcrumb-item active">List Pengajuan</li>
+            <li class="breadcrumb-item active">Hasil</li>
           </ol>
         </div>
       </div>
@@ -30,16 +32,14 @@ if ($rowTabelHasil>0){
     <div class="container-fluid">
       <div class="row">
         <div class="col-md">
-          <?php      
-          $nomor = 1;
+          <?php
           foreach ($tabelhasil as $hasil){
             $verifikasi = 'verifikasi';
             $tolak = 'tolak';
-            
             echo "
           <div class='card'>
             <div class='card-header'>
-              <h3 class='card-title'><strong>{$nomor}. {$hasil['beasiswa']}</strong></h3>
+              <h3 class='card-title'><strong>{$hasil['beasiswa']}</strong></h3>
             </div>
             <!-- /.card-header -->
             <div class='card-body p-0'>
@@ -83,59 +83,11 @@ if ($rowTabelHasil>0){
               </table>
             </div>
             <!-- /.card-body -->
-            <div class='card-footer'>
-              <a 
-              href='?page=hasil/admin&acc=verifikasi&id={$hasil['id']}' 
-              onclick='return confirm(\"Anda yakin verifikasi?\");'>
-              <button 
-              class='btn btn-info m-2'";
-              
-              if($hasil['status']==$verifikasi) echo 'disabled';
-              
-              echo ">Verifikasi
-              </button>
-              </a>
-              <a 
-              href='?page=hasil/admin&acc=tolak&id={$hasil['id']}' 
-              onclick='return confirm(\"Anda yakin tolak?\");'><button 
-              class='btn btn-danger m-2'";
-              
-              if($hasil['status']==$tolak) echo 'disabled';
-              
-              echo ">Tolak
-              </button></a>
-            </div>
+          
           </div>
             ";
-            $nomor++;
-          }
-
-          //untuk acc pengajuan 
-          if(isset($_GET['id']) && isset($_GET['acc'])){
-            $id = $_GET['id'];
-            $valueTombolReview = $_GET['acc'];
-
-            if($valueTombolReview=='verifikasi'){
-              $query = $pdo->prepare("UPDATE daftar SET status=? WHERE id=?");
-              $query->bindParam(1, $valueTombolReview);
-              $query->bindParam(2, $id);
-              $query->execute();
-
-              header("location:../app?page=hasil/admin");
-
-            } elseif ($valueTombolReview=='tolak') {
-              $query = $pdo->prepare("UPDATE daftar SET status=? WHERE id=?");
-              $query->bindParam(1, $valueTombolReview);
-              $query->bindParam(2, $id);
-              $query->execute();
-
-              header("location:../app?page=hasil/admin");
-            }
-            
-          }
-
           
-          
+          }
           
           ?>
           <!-- tombol edit dan delete kalau sempat
@@ -159,7 +111,7 @@ if ($rowTabelHasil>0){
     <div class="container-fluid">
       <div class="row mb-2">
         <div class="col-sm-6">
-          <h1>Tidak ada data, belum ada mahasiswa yang mengajukan beasiswa</h1>
+          <h1>Tidak ada data, Anda belum mengajukan beasiswa</h1>
         </div>
         <div class="col-sm-6">
           <ol class="breadcrumb float-sm-right">
