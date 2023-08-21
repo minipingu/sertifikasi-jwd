@@ -11,7 +11,7 @@ if (isset($_SESSION['user'])) {
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Login Admin Digitalent</title>
+    <title>Login Aplikasi Beasiswa KAMPUSKUaja.ac.id</title>
 
     <!-- Google Font: Source Sans Pro -->
     <link rel="stylesheet"

@@ -134,10 +134,12 @@ function ipkUnderThree($underThree, $moreThanThree=""){
 
                 <div class="form-group row mb-1">
                   <label for="berkas" class="col-sm-4 col-form-label">Upload Berkas Syarat</label>
-                  <div class="col-sm-8">
-                    <input <?= ipkUnderThree('disabled')?> required type="file" class="custom-file-input" id="berkas"
-                      name="file">
-                    <label class="custom-file-label mr-2 ml-2" for="berkas">Format File (.jpeg/.png/.pdf)</label>
+                  <div class="col-sm-8 form-group">
+                    <div class="custom-file">
+                      <input <?= ipkUnderThree('disabled')?> required type="file" class="custom-file-input"
+                        id="customFile" name="file">
+                      <label class="custom-file-label" for="customFile">Format File (.jpeg/.png/.pdf)</label>
+                    </div>
                   </div>
                 </div>
 

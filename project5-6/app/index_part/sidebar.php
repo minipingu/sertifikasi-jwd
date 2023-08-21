@@ -72,7 +72,7 @@
         <?php 
         if($_SESSION['role']=='Mahasiswa'){ 
           echo '<li class="nav-item mt-2 ">
-          <a href="?page=daftar/mahasiswa" class="nav-link';
+          <a href="?page=daftar/mahasiswa" class="nav-link ';
           echo active("daftar/mahasiswa");
           echo '">
           <i class="nav-icon fas fa-user-graduate"></i>
@@ -84,11 +84,11 @@
           echo '<li class="nav-item mt-2 ">
           <a href="?page=hasil/mahasiswa" class="nav-link ';
           echo active("hasil/mahasiswa");
-          echo'">
-            <i class="nav-icon fas fa-clipboard-check"></i>
-            <p>
-              Hasil
-            </p>
+          echo '">
+          <i class="nav-icon fas fa-clipboard-check"></i>
+          <p>
+            Hasil
+          </p>
           </a>
           </li>';
         

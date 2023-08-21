@@ -30,6 +30,13 @@ $.widget.bridge('uibutton', $.ui.button)
 <script src="../adminLTE/plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>
 <!-- AdminLTE App -->
 <script src="../adminLTE/dist/js/adminlte.js"></script>
+<script src="../adminLTE/plugins/bs-custom-file-input/bs-custom-file-input.min.js"></script>
+
+<script>
+$(function() {
+  bsCustomFileInput.init();
+});
+</script>
 </body>
 
 </html>

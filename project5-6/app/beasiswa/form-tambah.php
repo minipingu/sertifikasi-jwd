@@ -42,8 +42,8 @@
                 <div class="form-group row">
                   <label for="keterangan" class="col-sm-4 col-form-label">Deskripsi Beasiswa</label>
                   <div class="col-sm-8">
-                    <textarea id="keterangan" class="form-control" rows="3" placeholder="Deskripsi"
-                      name="keterangan"></textarea>
+                    <textarea id="keterangan" class="form-control" rows="3" placeholder="Deskripsi" name="keterangan"
+                      required></textarea>
                   </div>
                 </div>
                 <hr>
